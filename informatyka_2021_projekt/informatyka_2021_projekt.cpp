@@ -1,18 +1,80 @@
 ﻿#include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
+#include <random>
 #include <iostream>
 using namespace std;
 using namespace sf;
+class enemy{
+private:
 
+	CircleShape * gw;
+	int N;
+
+	std::random_device rd;
+
+public:
+   enemy(int Nt);
+	void draw(sf::RenderWindow& window);
+	void move();
+};
+
+
+enemy::enemy(int Nt) {
+
+	std::mt19937 gen(rd());
+	std::uniform_int_distribution<> distX(1, 800);
+	std::uniform_int_distribution<> distY(1, 600);
+	std::uniform_int_distribution<> distR(1, 10);
+	std::uniform_int_distribution<> distGreen(1, 50);
+	std::uniform_int_distribution<> distRed(1, 50);
+	float x = 0, y = 0;
+
+	N = Nt;
+	gw = new sf::CircleShape[N];
+	for (int i = 0; i < N; i++)
+	{
+		x = distX(gen);
+		y = distY(gen);
+		gw[i].setPosition(Vector2f(x, y));
+		gw[i].setRadius(distR(gen));
+		gw[i].setFillColor(Color(190 + distRed(gen), 190 + distGreen(gen), 200));
+
+
+
+	}
+}
+
+void enemy::draw(sf::RenderWindow& window) {
+	for (int i = 0; i < N; i++)
+	{
+		window.draw(gw[i]);
+	}
+}
+
+void enemy::move() {
+	std::mt19937 gen(rd());
+	std::uniform_int_distribution<> distX(1, 800);
+	std::uniform_int_distribution<> distY(1, 600);
+	std::uniform_int_distribution<> distXl(-10, 10);
+	std::uniform_int_distribution<> distYl(-10, 10);
+	for (int i = 0; i < N; i++)
+	{
+		gw[i].move(sf::Vector2f(distXl(gen), distYl(gen)));
+		sf::Vector2f position = gw[i].getPosition();
+		if (position.x > 750 || position.x < 0 || position.y > 530 || position.y < 0)
+			gw[i].setPosition(distX(gen), distY(gen));
+	}
+
+}
 
 class player {
 private:
 	Vector2f pos;
-	Sprite postac;
+	CircleShape postac;
 public:
 	player(float x_in, float y_in);
 	void przesun(float x_in, float y_in);
-	Sprite getpostac() { return postac; }
+	CircleShape getpostac() { return postac; }
 	Vector2f getPos() { return postac.getPosition(); }
 
 
@@ -21,11 +83,18 @@ player::player(float x_in, float y_in)
 {
 	pos.x = x_in;
 	pos.y = y_in;
-	Texture textura;
+	postac.setRadius(20);
+		postac.setFillColor(sf::Color(150, 50, 250));
+		// obramowka kola o grubosci 2px
+		postac.setOutlineThickness(2);
+		postac.setOutlineColor(sf::Color(250, 150, 100));
+		postac.setPosition(pos);//pozycja poczatkowa
+	
+	/*Texture textura;
 	textura.loadFromFile("kot3.jpg");
 	IntRect kszalt(0, 0, 150, 100);
 	Sprite postac(textura, kszalt);
-	postac.setPosition(pos);
+	postac.setPosition(pos);*/
 }
 
 void player::przesun(float x_in, float y_in)
@@ -140,6 +209,8 @@ void myDelay(int opoznienie)
 
 int main()
 {
+	Clock zegar;
+	enemy gw(10);
 	/*Texture textura;
 	textura.loadFromFile("kot3.jpg");
 	IntRect kszalt(0,0,150, 100);
@@ -150,7 +221,7 @@ int main()
 	
 	player p1(200, 200);
 	int menu_selected_flag = 0;
-	sf::RenderWindow window(sf::VideoMode(800, 600), "SFML demo");
+	sf::RenderWindow window(sf::VideoMode(800, 600), "gierka");
 	Menu menu(window.getSize().x, window.getSize().y);
 	
 	while (window.isOpen())
@@ -205,8 +276,13 @@ int main()
 							{
 								p1.przesun(0, 0.2);
 							}
+							if (zegar.getElapsedTime().asMilliseconds() > 100.0f) {
+								gw.move();
+								zegar.restart();
+							}
+
 							window.clear();
-							
+							gw.draw(window);
 							
 							window.draw(p1.getpostac());
 
