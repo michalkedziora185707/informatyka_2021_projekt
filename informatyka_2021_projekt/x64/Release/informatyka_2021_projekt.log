@@ -1,35 +1,23 @@
 ﻿  informatyka_2021_projekt.cpp
-C:\Users\admin\OneDrive\Pulpit\infromatyka II\informatyka_2021_projekt\informatyka_2021_projekt\informatyka_2021_projekt\informatyka_2021_projekt.cpp(36,12): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
-C:\Users\admin\OneDrive\Pulpit\infromatyka II\informatyka_2021_projekt\informatyka_2021_projekt\informatyka_2021_projekt\informatyka_2021_projekt.cpp(37,12): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
-C:\Users\admin\OneDrive\Pulpit\infromatyka II\informatyka_2021_projekt\informatyka_2021_projekt\informatyka_2021_projekt\informatyka_2021_projekt.cpp(39,24): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
-C:\Users\admin\OneDrive\Pulpit\infromatyka II\informatyka_2021_projekt\informatyka_2021_projekt\informatyka_2021_projekt\informatyka_2021_projekt.cpp(62,46): warning C4244: "argument": konwersja z "int" do "T", możliwa utrata danych
-          with
-          [
-              T=float
-          ]
-C:\Users\admin\OneDrive\Pulpit\infromatyka II\informatyka_2021_projekt\informatyka_2021_projekt\informatyka_2021_projekt\informatyka_2021_projekt.cpp(62,33): warning C4244: "argument": konwersja z "int" do "T", możliwa utrata danych
-          with
-          [
-              T=float
-          ]
-C:\Users\admin\OneDrive\Pulpit\infromatyka II\informatyka_2021_projekt\informatyka_2021_projekt\informatyka_2021_projekt\informatyka_2021_projekt.cpp(65,39): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
-C:\Users\admin\OneDrive\Pulpit\infromatyka II\informatyka_2021_projekt\informatyka_2021_projekt\informatyka_2021_projekt\informatyka_2021_projekt.cpp(65,27): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
-C:\Users\admin\OneDrive\Pulpit\infromatyka II\informatyka_2021_projekt\informatyka_2021_projekt\informatyka_2021_projekt\informatyka_2021_projekt.cpp(225,48): warning C4244: "argument": konwersja z "T" do "float", możliwa utrata danych
+C:\Users\admin\OneDrive\Pulpit\infromatyka II\informatyka_2021_projekt\informatyka_2021_projekt\informatyka_2021_projekt\informatyka_2021_projekt.cpp(44,12): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
+C:\Users\admin\OneDrive\Pulpit\infromatyka II\informatyka_2021_projekt\informatyka_2021_projekt\informatyka_2021_projekt\informatyka_2021_projekt.cpp(45,12): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
+C:\Users\admin\OneDrive\Pulpit\infromatyka II\informatyka_2021_projekt\informatyka_2021_projekt\informatyka_2021_projekt\informatyka_2021_projekt.cpp(81,27): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
+C:\Users\admin\OneDrive\Pulpit\infromatyka II\informatyka_2021_projekt\informatyka_2021_projekt\informatyka_2021_projekt\informatyka_2021_projekt.cpp(282,48): warning C4244: "argument": konwersja z "T" do "float", możliwa utrata danych
           with
           [
               T=unsigned int
           ]
-C:\Users\admin\OneDrive\Pulpit\infromatyka II\informatyka_2021_projekt\informatyka_2021_projekt\informatyka_2021_projekt\informatyka_2021_projekt.cpp(225,28): warning C4244: "argument": konwersja z "T" do "float", możliwa utrata danych
+C:\Users\admin\OneDrive\Pulpit\infromatyka II\informatyka_2021_projekt\informatyka_2021_projekt\informatyka_2021_projekt\informatyka_2021_projekt.cpp(282,28): warning C4244: "argument": konwersja z "T" do "float", możliwa utrata danych
           with
           [
               T=unsigned int
           ]
-C:\Users\admin\OneDrive\Pulpit\infromatyka II\informatyka_2021_projekt\informatyka_2021_projekt\informatyka_2021_projekt\informatyka_2021_projekt.cpp(265,27): warning C4305: "argument": obcięcie z "double" do "float"
-C:\Users\admin\OneDrive\Pulpit\infromatyka II\informatyka_2021_projekt\informatyka_2021_projekt\informatyka_2021_projekt\informatyka_2021_projekt.cpp(269,26): warning C4305: "argument": obcięcie z "double" do "float"
-C:\Users\admin\OneDrive\Pulpit\infromatyka II\informatyka_2021_projekt\informatyka_2021_projekt\informatyka_2021_projekt\informatyka_2021_projekt.cpp(273,27): warning C4305: "argument": obcięcie z "double" do "float"
-C:\Users\admin\OneDrive\Pulpit\infromatyka II\informatyka_2021_projekt\informatyka_2021_projekt\informatyka_2021_projekt\informatyka_2021_projekt.cpp(277,26): warning C4305: "argument": obcięcie z "double" do "float"
+C:\Users\admin\OneDrive\Pulpit\infromatyka II\informatyka_2021_projekt\informatyka_2021_projekt\informatyka_2021_projekt\informatyka_2021_projekt.cpp(323,27): warning C4305: "argument": obcięcie z "double" do "float"
+C:\Users\admin\OneDrive\Pulpit\infromatyka II\informatyka_2021_projekt\informatyka_2021_projekt\informatyka_2021_projekt\informatyka_2021_projekt.cpp(327,26): warning C4305: "argument": obcięcie z "double" do "float"
+C:\Users\admin\OneDrive\Pulpit\infromatyka II\informatyka_2021_projekt\informatyka_2021_projekt\informatyka_2021_projekt\informatyka_2021_projekt.cpp(331,27): warning C4305: "argument": obcięcie z "double" do "float"
+C:\Users\admin\OneDrive\Pulpit\infromatyka II\informatyka_2021_projekt\informatyka_2021_projekt\informatyka_2021_projekt\informatyka_2021_projekt.cpp(335,26): warning C4305: "argument": obcięcie z "double" do "float"
   Trwa generowanie kodu
-  2 of 185 functions ( 1.1%) were compiled, the rest were copied from previous compilation.
+  2 of 195 functions ( 1.0%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
     0 functions had inline decision re-evaluated but remain unchanged
   Zakończono generowanie kodu
