@@ -164,7 +164,7 @@ public:
 	CircleShape getpostac() { return postac; }
 	Vector2f getPos() { return postac.getPosition(); }
 	FloatRect getBounds() { return postac.getGlobalBounds(); }
-
+	Texture textura_player;
 };
 player::player(float x_in, float y_in)
 {
@@ -172,9 +172,9 @@ player::player(float x_in, float y_in)
 	pos.y = y_in;
 	postac.setRadius(20);
 		postac.setFillColor(sf::Color(150, 50, 250));
-		postac.setOutlineThickness(2);
-		postac.setOutlineColor(sf::Color(250, 150, 100));
 		postac.setPosition(pos);
+		textura_player.loadFromFile("ninja1.png");
+		postac.setTexture(&textura_player);
 }
 
 void player::przesun(float x_in, float y_in)
@@ -238,22 +238,6 @@ void interfejs::init() {
 	kontynuacja->setPosition(600, 400);
 	kontynuacja->setFillColor(sf::Color::Black);
 	kontynuacja->setString("kont");
-
-	//help1->setFont(*czcionka);
-	//help1->setCharacterSize(12);
-	//help1->setPosition(500, 300);
-	//help1->setFillColor(sf::Color::Black);
-	//help1->setString("info1");
-
-	//help2->setFont(*czcionka);
-	//help2->setCharacterSize(12);
-	//help2->setPosition(500, 320);
-	//help2->setFillColor(sf::Color::Black);
-	//help2->setString("info2");
-
-	/*obszar->setPosition(470, 280);
-	obszar->setSize(Vector2f(500,50));
-	obszar->setFillColor(sf::Color::Blue);*/
 	innerBounds.x = bounds.x - 45;
 	innerBounds.y = bounds.y - 80;
 }
@@ -313,8 +297,6 @@ void interfejs::draw(sf::RenderWindow& okno) {
 	okno.draw(*goraLewy);
 	okno.draw(*goraPrawy);
 	okno.draw(*dol);
-
-	//okno.draw(*kontynuacja);
 }
 class gameOver :public sf::Text {
 private:
@@ -326,11 +308,10 @@ public:
 			return;
 
 		this->setFont(czcionka);
-		this->setCharacterSize(68);
-		this->setPosition(300, 120);
-		this->setFillColor(sf::Color::Cyan);
-		this->rotate(45);
-		this->setString("Game Over :)");
+		this->setCharacterSize(50);
+		this->setPosition(400, 300);
+		this->setFillColor(sf::Color::Red);
+		this->setString("Przegrales :(");
 
 	}
 
@@ -392,7 +373,7 @@ public:
 		this->setCharacterSize(30);
 		this->setPosition(400, 600);
 		this->setFillColor(sf::Color::White);
-		this->setString("Czy chcesz kontynuowac?");
+		this->setString("Czy chcesz kontynuowac? Q = exit");
 	}
 
 };
@@ -424,7 +405,7 @@ Menu::Menu(float width, float height){
 	}
 	
 	menu[0].setFont(font);	
-	menu[0].setFillColor(sf::Color::Cyan);
+	menu[0].setFillColor(sf::Color::Blue);
 	menu[0].setString("Poziom 1 (latwy)");
 	menu[0].setPosition(sf::Vector2f(width / 3, height / (6 + 1) * 1));
 	menu[1].setFont(font);
@@ -467,7 +448,7 @@ void Menu::przesunG()
 		selectedItem--;
 		if (selectedItem < 0)
 			selectedItem =6 - 1;
-		menu[selectedItem].setFillColor(sf::Color::Cyan);
+		menu[selectedItem].setFillColor(sf::Color::Magenta);
 		menu[selectedItem].setStyle(sf::Text::Bold);
 	}
 	
@@ -483,7 +464,7 @@ void Menu::przesunD()
 		selectedItem++;
 		if (selectedItem >= 6)
 			selectedItem = 0;
-		menu[selectedItem].setFillColor(sf::Color::Cyan);
+		menu[selectedItem].setFillColor(sf::Color::Magenta);
 		menu[selectedItem].setStyle(sf::Text::Bold);
 	}
 	
@@ -591,19 +572,19 @@ powrot:;
 
 							if (Keyboard::isKeyPressed(Keyboard::Key::A))
 							{
-								p1.przesun(-0.25, 0);
+								p1.przesun(-0.3, 0);
 							}
 							if (Keyboard::isKeyPressed(Keyboard::Key::D))
 							{
-								p1.przesun(0.25, 0);
+								p1.przesun(0.3, 0);
 							}
 							if (Keyboard::isKeyPressed(Keyboard::Key::W))
 							{
-								p1.przesun(0, -0.25);
+								p1.przesun(0, -0.3);
 							}
 							if (Keyboard::isKeyPressed(Keyboard::Key::S))
 							{
-								p1.przesun(0, 0.25);
+								p1.przesun(0, 0.3);
 							}
 
 							if (zegar.getElapsedTime().asMilliseconds() > 10.0f) {
@@ -620,22 +601,10 @@ powrot:;
 								{
 									gw.przesun1(1300, 0, i);
 									scores++;
-									cout << scores;
+									
 
 								}
-								for (int i = 0; i < zdr.getSize(); i++) {
-
-									float dx = ((p1.getPos().x + (pb.width / 2)) - (zdr.getPos1(i).x + (zdrb.width / 2)));
-									float dy = ((p1.getPos().y + (pb.height / 2)) - (zdr.getPos1(i).y + (zdrb.height / 2)));
-									float distance = sqrt((dx * dx) + (dy * dy));
-									if (distance <= ((pb.width / 2) + (zdrb.width / 2)))
-									{
-										zdr.przesun1(1300, 0, i);
-										life++;
-										cout << life;
-
-									}
-								}
+								
 
 							}
 							for (int i = 0; i < gw.getSize(); i++) {
@@ -667,23 +636,26 @@ powrot:;
 							}
 							if (Keyboard::isKeyPressed(Keyboard::Key::F1))
 							{
-								zegar.getElapsedTime().asMilliseconds() == 5.0f;
 								
 								window.draw(*obszar1);
 								window.draw(*help1);
 								window.draw(*help3);
-								
-								
+								window.display();
+								Sleep(1000);
 							}
 							if (Keyboard::isKeyPressed(Keyboard::Key::Escape))
 							{
-								//window.draw(*kontynuacja);
-									//window.display();
-									//Sleep(2000);
+								window.draw(*kontynuacja);
+									window.display();
+									Sleep(3000);
+									if (Keyboard::isKeyPressed(Keyboard::Key::Q))
+									{
+										goto powrot;
+									}
 							}
+							
 							gw.draw(window);
 							zdr.draw(window);
-							//oknoGlowne->draw(window);
 							window.draw(p1.getpostac());
 
 							window.display();
@@ -694,7 +666,7 @@ powrot:;
 
 					if (event.key.code == sf::Keyboard::Enter && menu.getSelectedItem() == 1)
 					{
-						enemy gw(6);
+						enemy gw(5);
 						while (window.isOpen())
 						{
 							sf::Event event;
@@ -751,11 +723,16 @@ powrot:;
 								}
 							}
 
-
-
 							window.clear();
 							window.draw(tlo2);
 							window.draw(podloga);
+							if (Keyboard::isKeyPressed(Keyboard::Key::F1))
+							{
+								Sleep(1000);
+								window.draw(*obszar1);
+								window.draw(*help1);
+								window.draw(*help3);
+							}
 							if (Keyboard::isKeyPressed(Keyboard::Key::F2))
 							{
 								goto powrot;
@@ -796,7 +773,7 @@ powrot:;
 					if (event.key.code == sf::Keyboard::Enter && menu.getSelectedItem() == 2)
 					{
 
-						enemy gw(3);
+						enemy gw(7);
 						while (window.isOpen())
 						{
 							sf::Event event;
@@ -856,13 +833,16 @@ powrot:;
 								{
 									goto powrot;
 								}
-
+								
 								window.clear();
 								window.draw(tlo3);
 								window.draw(podloga);
-								if (Keyboard::isKeyPressed(Keyboard::Key::F2))
+								if (Keyboard::isKeyPressed(Keyboard::Key::F1))
 								{
-									goto powrot;
+									Sleep(1000);
+									window.draw(*obszar1);
+									window.draw(*help1);
+									window.draw(*help3);
 								}
 								IT1->update("Scores: " + std::to_string(scores), "Punkty zycia: " + std::to_string(life), "level: 1", "Czy chcesz kontynuowac? 1. tak   2. nie");
 
@@ -895,6 +875,9 @@ powrot:;
 							cout << "S - ruch gracza w dol" << endl;
 							cout << "A - ruch gracza w lewo" << endl;
 							cout << "D - ruch gracza w prawo" << endl;
+							cout << "F1 - informacje dotyczace zasad gry i sterowania" << endl;
+							cout << "F2 - wyjscie z gry" << endl;
+							cout << "ESC - pytanie o kontynuacje gry" << endl;
 							if (Keyboard::isKeyPressed(Keyboard::Key::F2))
 							{
 								goto powrot;
@@ -911,6 +894,7 @@ powrot:;
 							cout << "Wyjscie z gry" << endl;
 							return 0;
 							menu_selected_flag = 1;
+						
 						}
 
 					}
@@ -926,11 +910,8 @@ powrot:;
 			if (menu_selected_flag == 0)
 				menu.draw(window);
 			window.display();
-
-
-		}
-
-		return 0;
+}
+return 0;
 	}
 
 	
